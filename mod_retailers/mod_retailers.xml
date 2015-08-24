@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="module" version="3.4.3"  method="upgrade">
+    <name>MOD_RETAILERS_NAME</name>
+    <creationDate>August, 2015</creationDate>
+    <author>Chad Windnagle</author>
+    <authorUrl>http://www.chadwindnagle.com</authorUrl>
+    <copyright>Copyright (C) 2015 Chad Windangle. All rights reserved.</copyright>
+    <license>GNU General Public License version 2, or later.</license>
+    <version>1.0</version>
+    <description>MOD_RETAILERS_XML_DESC</description>
+    <files>
+        <filename module="mod_retailers">mod_retailers.php</filename>
+        <filename>helper.php</filename>
+        <folder>tmpl</folder>
+    </files>
+    <languages>
+        <language tag="en-GB">language/en-GB/en-GB.mod_retailers.ini</language>
+        <language tag="en-GB">language/en-GB/en-GB.mod_retailers.sys.ini</language>
+    </languages>
+</extension>
