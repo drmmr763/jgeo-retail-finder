@@ -27,6 +27,13 @@
                         label="MOD_RETAILERS_PARAM_LIMIT_LABEL"
                         description="MOD_RETAILERS_PARAM_LIMIT_DESC"
                         />
+                <field
+                        name="wait_text"
+                        type="text"
+                        default="Finding Nearby Retailers"
+                        label="MOD_RETAILERS_PARAM_WAIT_TEXT_LABEL"
+                        description="MOD_RETAILERS_PARAM_WAIT_TEXT_DESC"
+                        />
             </fieldset>
         </fields>
     </config>

@@ -22,10 +22,10 @@ var Retailers = {
         var checkStatus = setInterval(function() {
             // execute ajax functions
             Retailers.getAjaxStatus();
-
             // once we have the status please stop!
             if (Retailers.status) {
                 clearInterval(checkStatus);
+                Retailers.addRetailers();
             }
 
         }, 2000); // in ms
@@ -51,7 +51,48 @@ var Retailers = {
     /*
      * process the items here
      */
-    addRetailers: function(retailers) {
+    addRetailers: function() {
+        var locations = Retailers.retailersList;
+        var html = '';
 
+        if (locations.length == 0) {
+            var html = '<p><a href="/find-retailer">No Retailers Found. Try again.</a></p>'
+            jQuery('#quick-retailers').html(html);
+            return;
+        }
+
+        jQuery.each(locations, function(index, location) {
+            html += Retailers.makeAccordion(index, location)
+        });
+
+        html += '<p><a href="/find-retailer">Visit locator for more info</a>';
+
+        jQuery('#quick-retailers').html(html);
+    },
+
+    /*
+     * Build an accordion selector
+     */
+    makeAccordion: function(index, location)
+    {
+        var html = '';
+        html += '<div class="accordion-group">';
+        html += '<div class="accordion-heading">';
+        html += '<a class="accordion-toggle" data-toggle="collapse" data-parent="#quick-retailers" href="#tab' + index +'">';
+        html += location.location_name;
+        html += '</a>';
+
+        html += '<div id="tab' + index +'" class="accordion-body collapse">';
+        html += '<div class="accordion-inner">';
+        html += '<p>Phone: <a href="tel:' + location.location_phone + '">';
+        html += location.location_phone;
+        html += '</a></p>';
+        html += '<p>' + location.location_address + '<br />';
+        html += location.location_city + ", " + location.location_state + " " + location.location_zip;
+        html += '</p></div></div>';
+
+        html += '</div></div>';
+
+        return html;
     }
 };

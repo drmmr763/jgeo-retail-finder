@@ -51,7 +51,7 @@ if (! $helper->geoIsAvailable()) {
             <?php endforeach; ?>
         <?php endif;?>
     <?php else: ?>
-        isNotGeo
+        <p><?php echo $params->get('wait_text', 'Finding Nearby Retailers'); ?><img class="pull-right" src="<?php echo JUri::root(); ?>/images/system/searchLoader.gif" /></p>
     <?php endif; ?>
 </div>
 
