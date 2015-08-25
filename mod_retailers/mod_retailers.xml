@@ -17,4 +17,17 @@
         <language tag="en-GB">language/en-GB/en-GB.mod_retailers.ini</language>
         <language tag="en-GB">language/en-GB/en-GB.mod_retailers.sys.ini</language>
     </languages>
+    <config>
+        <fields name="params">
+            <fieldset name="basic">
+                <field
+                        name="limit"
+                        type="text"
+                        default="2"
+                        label="MOD_RETAILERS_PARAM_LIMIT_LABEL"
+                        description="MOD_RETAILERS_PARAM_LIMIT_DESC"
+                        />
+            </fieldset>
+        </fields>
+    </config>
 </extension>

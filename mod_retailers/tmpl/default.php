@@ -19,7 +19,7 @@ if (! $helper->geoIsAvailable()) {
 ?>
 <div class="accordion" id="quick-retailers">
     <?php if ($helper->geoIsAvailable()): ?>
-        <?php $retailers = $helper->getRetailers(); ?>
+        <?php $retailers = $helper->getRetailers($params->get('limit', 2)); ?>
         <?php $count = 0; ?>
         <?php if(count($retailers)): ?>
             <?php foreach ($retailers as $retailer): ?>

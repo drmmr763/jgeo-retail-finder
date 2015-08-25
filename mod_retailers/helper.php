@@ -13,7 +13,7 @@ class modRetailersHelper
 {
     protected $session;
 
-    public function __construct()
+    public function __construct($params)
     {
         $this->session = JFactory::getSession();
     }
@@ -53,7 +53,7 @@ class modRetailersHelper
         return (array('status' => $status));
     }
 
-    public static function getRetailers()
+    public static function getRetailers($limit = 2)
     {
         $model = JModelLegacy::getInstance('RetailerLocations', 'RestonicRetailersModel', array('ignore_request' => true));
 
@@ -61,6 +61,9 @@ class modRetailersHelper
         $app       = JFactory::getApplication();
         $appParams = $app->getParams();
         $model->setState('params', $appParams);
+
+        // limit
+        //$limit = $params->get('limit', 2);
 
         $input = JFactory::getApplication()->input;
 
@@ -71,6 +74,7 @@ class modRetailersHelper
         $input->set('latitude', $location->latitude);
         $input->set('longitude', $location->longitude);
         $input->set('maximumDistance', 50);
+        $input->set('maxResults', $limit);
 
         $items = $model->getItems();
 
