@@ -7,6 +7,8 @@
 
 defined('_JEXEC') or die;
 
+JModelLegacy::addIncludePath(JPATH_SITE . '/components/com_restonicretailers/models', 'RestonicRetailersModel');
+
 class modRetailersHelper
 {
     protected $session;
@@ -53,6 +55,25 @@ class modRetailersHelper
 
     public static function getRetailers()
     {
-        return array();
+        $model = JModelLegacy::getInstance('RetailerLocations', 'RestonicRetailersModel', array('ignore_request' => true));
+
+        // Set application parameters in model
+        $app       = JFactory::getApplication();
+        $appParams = $app->getParams();
+        $model->setState('params', $appParams);
+
+        $input = JFactory::getApplication()->input;
+
+        $session = JFactory::getSession();
+
+        $location = json_decode($session->get('jgeo_position'));
+
+        $input->set('latitude', $location->latitude);
+        $input->set('longitude', $location->longitude);
+        $input->set('maximumDistance', 50);
+
+        $items = $model->getItems();
+
+        return $items;
     }
 }
