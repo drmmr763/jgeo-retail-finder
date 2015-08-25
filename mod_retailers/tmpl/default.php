@@ -8,13 +8,17 @@
 defined('_JEXEC') or die;
 
 $helper = new modRetailersHelper();
+$doc = JFactory::getDocument();
 
 // only load the JS stuff if we don't have the location already
 if (! $helper->geoIsAvailable()) {
-    $doc = JFactory::getDocument();
     $doc->addScript(JUri::root() . '/modules/mod_retailers/assets/js/retailers.js');
     $doc->addScriptDeclaration('Retailers.JGeoPoll();');
 }
+
+$params = JComponentHelper::getParams('com_restonicretailers');
+
+$doc->addScript('https://maps.googleapis.com/maps/api/js?key='.$params->get('gmap_apikey'));
 
 ?>
 <div class="accordion" id="quick-retailers">
@@ -53,5 +57,11 @@ if (! $helper->geoIsAvailable()) {
     <?php else: ?>
         <p><?php echo $params->get('wait_text', 'Finding Nearby Retailers'); ?><img class="pull-right" src="<?php echo JUri::root(); ?>/images/system/searchLoader.gif" /></p>
     <?php endif; ?>
+    <form class="form-inline" id="retailer-lookup" method="post" action="<?php echo JRoute::_('index.php?option=com_restonicretailers'); ?>">
+        <fieldset class="locator">
+            <input class="required input input-medium" placeholder="Enter zipcode" type="text" name="zip" id="zip">
+            <input type="submit" class="btn btn-priamry input-medium" name="submit" id="submit" value="Search Locations" />
+        </fieldset>
+    </form>
 </div>
 
