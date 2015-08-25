@@ -62,9 +62,6 @@ class modRetailersHelper
         $appParams = $app->getParams();
         $model->setState('params', $appParams);
 
-        // limit
-        //$limit = $params->get('limit', 2);
-
         $input = JFactory::getApplication()->input;
 
         $session = JFactory::getSession();
