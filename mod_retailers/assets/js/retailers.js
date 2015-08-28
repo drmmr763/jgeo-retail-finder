@@ -65,8 +65,6 @@ var Retailers = {
             html += Retailers.makeAccordion(index, location)
         });
 
-        html += '<p><a href="/find-retailer">Visit locator for more info</a>';
-
         jQuery('#quick-retailers').html(html);
     },
 
